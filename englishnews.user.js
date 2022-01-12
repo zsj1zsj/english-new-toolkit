@@ -21,6 +21,13 @@
     if(window.location.host.includes('cnn.com')){
         content = document.querySelectorAll("div.zn-body__paragraph")
     }
+    function hasDigit(s){
+       for(let i = 0; i<s.length; i++){
+		if(s[i]<=9 && s[i]>='0')return true;
+	   }
+	   return false;
+   }
+
 
     for(let i = 0;i<content.length;i++){
         let phtml = content[i];
@@ -32,6 +39,9 @@
 
         for(let i = 0;i< pos.length;i++){
 		let lemmatized = words[i].trim().toLowerCase();
+                if(hasDigit(lemmatized)){
+                  continue;
+                }
 		switch(pos[i]){
 			case "VERB":
 				lemmatized = lemmatize.verb(lemmatized);
