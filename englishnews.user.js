@@ -6,6 +6,7 @@
 // @author       Lynn
 // @match        *://www.chinadaily.com.cn/a/*
 // @match        http*://*.cnn.com/*/index.html
+// @match        http*://blog.reedsy.com/short-story/*
 // @icon         https://tse1-mm.cn.bing.net/th/id/R-C.caa35783aca9f7e5bf495d3f77973337?rik=vIeUpDLUzfgRtQ&riu=http%3a%2f%2fwww.clipartbest.com%2fcliparts%2fdc6%2fo8g%2fdc6o8gogi.ico&ehk=ZPCxk1hrKx%2fC5tshnR8RoMyUCBjTLhdcIDRONLUT5MA%3d&risl=&pid=ImgRaw&r=0
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
 // @require      file://D:\DEV\js\bundle.js
@@ -21,6 +22,8 @@
 
     if(window.location.host.includes('cnn.com')){
         content = document.querySelectorAll("div.zn-body__paragraph")
+    }else if(window.location.host.includes('blog.reedsy.com')){
+        content = document.querySelectorAll("body > div.writing-prompts > section.row-thin.row-white > div > article > p");
     }
 
     function hasDigit(s){
