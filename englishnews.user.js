@@ -70,15 +70,16 @@
     }
 
     rubyWords.forEach(w=>{
-        w = w.replace('-','');
-        $.get( `https://dict.cn/${w}`, function( data ) {
+        var nw = w.replace('-','');
+        $.get( `https://dict.cn/${nw}`, function( data ) {
             var html = $.parseHTML(data);
-            console.log(html.length);
             var explain = $(html).find('div.basic.clearfix ul li:first-child');
             var result = explain.text();
 
-            result = result.split(/\s+/g)[2];
-            console.log(result);
+            result = result.split(/\s+/g).filter(w=>w!="").join(";");
+            console.log(result.length);
+            console.log(w + ": " + result);
+
             var word = $(`#${w}`).text();
             $(`#${w}`).html(`<ruby><rb>${word}<rt>${result}</ruby>`);
         });
